@@ -10,7 +10,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
     hostPathVolume(mountPath: '/usr/local/bin/helm', hostPath: '/usr/local/bin/helm')
   ]
   ) {
-    node('mypod') {
+    node('jenkins-slave-pod') {
         stage('Get latest version of code') {
           checkout scm
         }
