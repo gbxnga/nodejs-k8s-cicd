@@ -1,5 +1,5 @@
 
-podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [ 
+podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [ 
     containerTemplate(
       name: 'docker', 
       image: 'docker', 
