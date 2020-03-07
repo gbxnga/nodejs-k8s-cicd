@@ -39,7 +39,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
   ) {
     node('mypod') {
 
-        def REPOSITORY_URI = "gbxnga/foodapp-nodejs"
+        def REPOSITORY_URI = "gbxnga/nodejs-k8s-cicd"
 
         stage('Get latest version of code') {
           checkout scm
