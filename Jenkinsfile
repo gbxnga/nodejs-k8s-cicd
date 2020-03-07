@@ -1,8 +1,35 @@
 
 podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [ 
-    containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
-    containerTemplate(name: 'kubectl', image: 'amaceog/kubectl', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'helm', image: 'alpine/helm:2.14.0', ttyEnabled: true, command: 'cat')
+    containerTemplate(
+      name: 'docker', 
+      image: 'docker', 
+      command: 'cat', 
+      resourceRequestCpu: '50m',
+      resourceLimitCpu: '100m',
+      resourceRequestMemory: '100Mi',
+      resourceLimitMemory: '200Mi',
+      ttyEnabled: true
+    ),
+    containerTemplate(
+      name: 'kubectl', 
+      image: 'amaceog/kubectl',
+      resourceRequestCpu: '50m',
+      resourceLimitCpu: '100m',
+      resourceRequestMemory: '100Mi',
+      resourceLimitMemory: '200Mi', 
+      ttyEnabled: true, 
+      command: 'cat'
+    ),
+    containerTemplate(
+      name: 'helm', 
+      image: 'alpine/helm:2.14.0', 
+      resourceRequestCpu: '50m',
+      resourceLimitCpu: '100m',
+      resourceRequestMemory: '100Mi',
+      resourceLimitMemory: '200Mi',
+      ttyEnabled: true, 
+      command: 'cat'
+    )
   ],
 
   volumes: [
@@ -10,7 +37,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins', containers: [
     hostPathVolume(mountPath: '/usr/local/bin/helm', hostPath: '/usr/local/bin/helm')
   ]
   ) {
-    node('jenkins-slave-pod') {
+    node('mypod') {
         stage('Get latest version of code') {
           checkout scm
         }
