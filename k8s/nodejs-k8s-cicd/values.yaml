@@ -6,7 +6,7 @@ replicaCount: 2
 
 image:
   repository: gbxnga/nodejs-k8s-cicd
-  tag: latest
+  tag: 7
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
